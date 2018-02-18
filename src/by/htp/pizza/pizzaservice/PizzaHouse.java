@@ -4,9 +4,7 @@ import java.util.Scanner;
 import by.htp.pizza.pizzaservice.Order;
 
 public class PizzaHouse {
-	
-	public String email;
-	
+		
 	public Pizza cookPizza(int x, String s){
 		Pizza pizza = new Pizza();
 		pizza.setSize(x);
@@ -23,7 +21,7 @@ public class PizzaHouse {
 	}
 	
 	public int askPizzaNumber() {
-		Order ord = new Order();
+		//Order ord = new Order();
 		System.out.println("Давайте сделаем заказ, сколько хотите пицц?");
 		Scanner sc = new Scanner(System.in);
 		int num = sc.nextInt();
@@ -52,13 +50,12 @@ public class PizzaHouse {
 	}
 	
 	public Pizza[] askPizza() {
-		this.askPizzaNumber();
-		Pizza[] pizzas = new Pizza[this.askPizzaNumber()];
-		for (int i = 1; i < askPizzaNumber(); i++) {
-			askPizzaName();
-			pizzas[i].title = this.askPizzaName();
-			askPizzaSize();
-			pizzas[i].size = this.askPizzaSize();
+		int num = askPizzaNumber();
+		Pizza[] pizzas = new Pizza[num];
+		for (int i = 0; i < num; i++) {
+			String name = askPizzaName();
+			int size = askPizzaSize();
+			pizzas[i] = cookPizza(size, name);
 		}
 		return pizzas;		
 	}

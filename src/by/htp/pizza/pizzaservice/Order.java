@@ -3,9 +3,19 @@ package by.htp.pizza.pizzaservice;
 import java.util.Scanner;
 
 public class Order {
+	
 	public String address;
 	public Pizza[] pizzas;
+	
+	public Order() {
+		
+	}
 
+	public Order (Pizza[] pizzas, String address) {
+		this.setOrderPizzas(pizzas);
+		this.setOrderAddress(address);
+	}
+	
 	public void setOrderAddress(String address) {
 		this.address = address;
 	}
@@ -25,7 +35,7 @@ public class Order {
 	public void printOrder() {
 		int i = this.pizzas.length;
 		System.out.println("В вашем заказе " + i + " пицц");
-		for (Pizza p : this.getOrderPizzas()) {
+		for (Pizza p : getOrderPizzas()) {
 			System.out.println("Пицца " + p.getTitle() + " размер " + p.getSize());
 		}
 		System.out.println("Заказ будет доставлен по адресу " + this.getOrderAddress());
@@ -33,7 +43,8 @@ public class Order {
 
 	public void makeOrder() {
 		PizzaHouse ph = new PizzaHouse();
-		this.setOrderAddress(ph.askAddress());
+		String address = ph.askAddress();
+		this.setOrderAddress(address);
 		this.setOrderPizzas(ph.askPizza());
 		this.printOrder();
 	}
